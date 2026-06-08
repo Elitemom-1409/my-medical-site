@@ -5,7 +5,7 @@ on:
     # This runs every day at midnight
     - cron: '0 0 * * *'
   workflow_dispatch:
-    # THIS IS THE KEY! This line tells GitHub to show the "Run workflow" button.
+    # This is the button you click to test it!
 
 jobs:
   build_and_deploy:
@@ -21,4 +21,29 @@ jobs:
 
       - name: Run the Master Engine
         run: |
-                  python -c "import sys; sys.path.append('.'); from core.pipeline.orchestrator import MasterOrchestrator; import random; from data.expander import GlossaryExpander; expander = GlossaryExpander([]); nodes = expander.expand(); if nodes: orch = MasterOrchestrator(); orch.run_automation_cycle(random.choice(nodes)) else: print('No topics found')"
+          # We are using a multi-line command now so Python can read it properly
+          python -c "
+          import sys
+          import random
+          sys.path.append('.')
+          from core.pipeline.orchestrator import MasterOrchestrator
+          from data.expander import GlossaryExpander
+          
+          expander = GlossaryExpander([])
+          nodes = expander.expand()
+          
+          if nodes:
+              orch = MasterOrche_orchestrator = MasterOrchestrator()
+              orch.run_automation_cycle(random.choice(nodes))
+          else:
+              print('No topics found')
+          "
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Medical Bot"
+          git config --global user.email "bot@medicalsite.com"
+          git add content/
+
+          git commit -m "🚀 New Medical Article Published Automatically!" || echo "No changes to commit"
+          git push
