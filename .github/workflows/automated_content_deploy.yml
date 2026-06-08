@@ -2,14 +2,14 @@ name: Daily Medical Site Automation
 
 on:
   schedule:
-    # This runs every day at midnight
     - cron: '0 0 * * *'
   workflow_dispatch:
-    # This allows you to click a button to test it manually
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -19,14 +19,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run the Master Engine
-        run: |
-          python -c "import sys; sys.path.append('.'); from core.pipeline.orchestrator import MasterOrchestrator; from data.expander import GlossaryExpander; import random; e = GlossaryExpander(); nodes = e.expand(); (MasterOrchestrator().run_automation_cycle(random.choice(nodes)) if nodes else print('No nodes found'))"
+      - name: Run the Master Switch
+        run: python run_all.py
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "Medical Bot"
-          git config --global user.email "bot@medicalsite.com"
+          git config --base_url "bot@medicalsite.com"
           git add content/
-          git commit -m "🚀 New Medical Article Published Automatically!" || echo "No changes to commit"
+          git commit -m "🚀 New Medical Article Published!" || echo "No changes to commit"
           git push
