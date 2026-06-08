@@ -1,0 +1,36 @@
+yaml
+
+name: Daily Medical Site Automation
+
+on:
+  schedule:
+    # This tells GitHub to run your website factory every day at midnight
+    - cron: '0 0 * * *'
+  workflow_dispatched:
+  workflow_dispatch: 
+    # This allows you to click a button to test it manually
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run the Master Engine
+        run: |
+          # This command tells the Brain (orchestrator) to start working
+          python -c "import sys; sys.path.append('.'); from core.pipeline.orchestrator import MasterOrchestrator; import random; from data.expander import GlossaryExpander; expander = GlossaryExpander([]); nodes = expander.expand(); if nodes: orch = MasterOrchestrator(); orch.run_automation_cycle(random.choice(nodes)) else: print('No topics found')"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Medical Bot"
+          git config --global user.email "bot@medicalsite.com"
+          git add content/
+          git commit -m "🚀 New Medical Article Published Automatically!" || echo "No changes to commit"
+          git push
