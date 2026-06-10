@@ -37,7 +37,7 @@ class MasterEngine:
         for disease in self.data.diseases:
             print(f"🛠️ Processing: {disease['name']}")
             raw_text = self.factory.generate(disease)
-            final_text = self.humanizer.human_text(raw_text) if hasattr(self.humanizer, 'human_text') else self.humanize_simple(raw_text)
+            final_text = self.humanizer.human_text(raw_text) if hasattr(self.humanizer, 'human_text') else self.humanize_simplified(raw_text)
             
             # In this simple version, we use a quick helper
             final_text = self.humanize_simplified(raw_text)
