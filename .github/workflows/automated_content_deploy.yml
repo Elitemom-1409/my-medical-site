@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
     # This allows you to click a button to test it manually
 
+permissions:
+  contents: write # <--- THIS IS THE MAGIC KEY THAT FIXES THE 403 ERROR
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-python: '3.11'
+          python-version: '3.11'
 
       - name: Run the Master Engine
         run: python master_engine.py
