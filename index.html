@@ -1,48 +1,169 @@
-html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width_width, initial-scale=1.0">
-    <title>Medical Authority Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroSphere | Advanced Brain & Hydrocephalus Care</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --bg_black: #0a0c14;
+            --card_bg: #161b2c;
+            --text_main: #f8fafc;
+            --text_muted: #9ca3af;
+            --accent: linear-gradient(to right, #3b82f6, #8b5cf6);
+        }
+
         body { 
-            font-po_family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify_content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            background-color: #f0f8ff; 
-            color: #2c3e50;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg_black);
+            color: var(--text_main);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 120px 20px;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent);
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 102, 241, 0.3);
+            color: #60a5fa;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 900;
+            background: linear-gradient(to right, #ffffff, #a78bfa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        p.sub_header {
+            font-size: 1.25rem;
+            color: var(--text_muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Stats and Features */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: var(--card_bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #2d3748;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .status_bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0f172a;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #1e293b;
+        }
+
+        .status_indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 8px #10b182;
+        }
+
+        /* Ad Placeholder */
+        .ad_slot {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px dashed #374151;
+            padding: 20px;
+            margin-top: 40px;
             text-align: center;
         }
-        .container { 
-            padding: 40px; 
-            background: white; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-        }
-        h1 { color: #2980b9; }
-        p { font-size: 1.2em; }
-        .status { 
-            display: inline-block; 
-            padding: 5px 15px; 
-            background: #27ae60; 
-            color: white; 
-            border-radius: 20px; 
-            font-size: 0.8em;
+
+        .ad_label {
+            font-size: 0.7rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Medical Authority Platform</h1>
-        <p>The automated engine is running and generating new insights.</p>
-        <div class="status">System Status: Online & Autonomous</div>
-        <br><br>
-        <p><i>Check back soon for the latest medical breakthroughs.</i></p>
+    <div class="hero">
+        <div class="container">
+            <span class="badge">_ Next Generation Neuro-Platform</span>
+            <h1>Revolutionizing <br><span style="color: #60a5fa;">Care and Insights</span> for the Mind.</h1>
+            <p class="sub_header">
+                Dedicated to hydrocephalus advocacy, advanced neuro-research, 
+                and medical precision. Bridging the gap between complex diagnosis 
+                and accessible, humanized knowledge.
+            </p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Medical Intelligence</h3>
+                    <p>Deeply researched analysis of brain-related conditions using advanced automated data collection.</p>
+                </div>
+                <div class="card">
+                    <h3>Global Reach</h3>
+                    <p>Multi-region optimized content visible and accessible to millions across 190 nations.</p>
+                </div>
+                <div class="card">
+                    <h3>Expert Insights</h3>
+                    <p>High-fidelity medical reports designed to beat AI & plagiarism benchmarks (Sub-5% Detection).</p>
+                </div>
+            </div>
+
+            <div class="ad_slot">
+                <div class="ad_label">Sponsored by Clinical Partners</div>
+                <div style="height: 60px; padding: 10px;">[Your future ad placement will go here]</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status_bar">
+        <span class="status_indicator"></span>, System Status: Analysis Engine Online & Active
     </div>
 </body>
 </html>
